@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO Online Users</title>
+  </head>
+  <body>
+    <h1>Online Users <span id="user_count"> </span></h1>
+    <ul id="users"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const usersList = document.getElementById("users");
+      const user_count = document.getElementById("user_count");
+
+      socket.on("users", (data) => {
+        console.log("Users updated:", data);
+        user_count.textContent = data.users.length;
+
+        // Clear the current users list
+        usersList.innerHTML = "";
+
+        // Add all users from the data array
+        data.users.forEach((user) => {
+          console.log(user);
+          addUser(user.id);
+        });
+      });
+
+      socket.on("user_disconnected", (data) => {
+        console.log("User disconnected:", data.id);
+        removeUser(data.id);
+      });
+
+      function addUser(id) {
+        const li = document.createElement("li");
+        li.id = `user-${id}`;
+        li.textContent = `User ${id}`;
+        usersList.appendChild(li);
+      }
+
+      function removeUser(id) {
+        const li = document.getElementById(`user-${id}`);
+        if (li) {
+          usersList.removeChild(li);
+        }
+      }
+    </script>
+  </body>
+</html>
