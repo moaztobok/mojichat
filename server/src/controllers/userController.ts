@@ -1,6 +1,5 @@
 import { clerkClient } from "@clerk/express"
 import { Request, Response } from "express"
-import User from "../models/User"
 // Function to validate user data before creating a user
 const validateUserData = (userData: any) => {
     const { email, username, password } = userData

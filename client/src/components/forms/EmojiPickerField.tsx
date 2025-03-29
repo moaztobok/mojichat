@@ -66,6 +66,7 @@ const EmojiPickerField = <
                         </FormControl>
                         <PopoverContent className='min-w-fit px-0 py-0 overflow-hidden'>
                             <EmojiPicker
+
                                 open
                                 style={
                                     {
@@ -75,7 +76,7 @@ const EmojiPickerField = <
                                     }
                                 }
 
-                                searchDisabled
+
                                 emojiStyle={EmojiStyle.NATIVE}
                                 className='border-none  border-0 rounded-none'
                                 onEmojiClick={(e) => {

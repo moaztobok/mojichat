@@ -4,7 +4,6 @@ export const AuthLayout = ({ children }: {
 }) => {
     return (
         <div className="auth-layout  h-screen flex items-center justify-center relative">
-
             <div className="absolute inset-0 bg-primary/10 -z-1"></div>
             <img
                 src={image}
